@@ -10,7 +10,8 @@ type Filter =
   | "Short Films"
   | "Music Albums"
   | "Podcasts"
-  | "Audio Books";
+  | "Audio Books"
+  | "Films & Productions";
 
 const filters: Filter[] = [
   "All",
@@ -21,6 +22,7 @@ const filters: Filter[] = [
   "Music Albums",
   "Podcasts",
   "Audio Books",
+  "Films & Productions",
 ];
 
 const audioPost: Array<[string, string]> = [
@@ -115,6 +117,67 @@ const audioBooks: Array<[string, string]> = [
   ["Love You Forever", "Platform release"],
   ["Dharmik", "Platform release"],
 ];
+
+const filmCategories = {
+  drama: [
+    {
+      title: "विनायक पंडित (Vinayak Pandit)",
+      description: "Planet Marathi Original",
+      category: "Drama",
+      image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-ivK9llqC8jTxhdp2zmWmBJ2Oxh7n5R.png",
+    },
+    {
+      title: "इशारी (Ishari)",
+      description: "IFFI Official Selection",
+      category: "Drama",
+      image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-F2PVKncYbs2fmWc056hasNoZtuNm41.png",
+    },
+    {
+      title: "स्वोपा (Swopa)",
+      description: "Period Drama",
+      category: "Drama",
+      image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-lg3bolB00ZHEPFmmnPfPsUilfeJJFw.png",
+    },
+    {
+      title: "समुद्र महराज (Samudra Maharaj)",
+      description: "Epic Period Drama",
+      category: "Drama",
+      image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-6IjY3INj1mqiD2JL65Waiqf3AhZ10L.png",
+    },
+  ],
+  comedy: [
+    {
+      title: "साप्पळा (Saappala)",
+      description: "Thriller Drama",
+      category: "Comedy Drama",
+      image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-pbpnb8XrpYNT1KBjqqcb8jBRnHowWs.png",
+    },
+    {
+      title: "गुलाबी (Gulabi)",
+      description: "Comedy Drama",
+      category: "Comedy Drama",
+      image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-C2mHW13Far70KXBW2QFNRDgdsa3SY1.png",
+    },
+    {
+      title: "लाइक आणि सबस्क्राइब (Like aani Subscribe)",
+      description: "Contemporary Comedy",
+      category: "Comedy Drama",
+      image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-huQ8cj1wV4Ws5UgcLNMhfxY4hWRTNd.png",
+    },
+    {
+      title: "दिन लगनाची गास्ट (Din Lagnaachi Gast)",
+      description: "Family Comedy",
+      category: "Comedy Drama",
+      image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-BhNRv6WjCcl9BgJqHK2LnqQw5G6DGf.png",
+    },
+    {
+      title: "करती काज (Karti Kaaj)",
+      description: "Comedy Romance",
+      category: "Comedy Drama",
+      image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-e7vA3pznIjahCYWW6bMOG2HVEZPjSv.png",
+    },
+  ],
+};
 
 const SectionHeader = ({
   num,
@@ -416,10 +479,95 @@ const WorkShowcase = () => {
         </section>
       )}
 
+      {/* FILMS & PRODUCTIONS */}
+      {show("Films & Productions") && (
+        <section className="py-20">
+          <div className="container">
+            <SectionHeader num="08" title="Films & Productions" count="9 Productions" />
+            
+            {/* Drama Section */}
+            <div className="mb-16">
+              <h3 className="font-display text-2xl md:text-3xl uppercase tracking-wide text-foreground mb-8 flex items-center gap-3">
+                <span className="text-primary">▸</span> Drama & Period Films
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {filmCategories.drama.map((film, i) => (
+                  <motion.div
+                    key={film.title}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-30px" }}
+                    transition={{ duration: 0.4, delay: i * 0.06 }}
+                    className="group bg-background-elevated border border-border overflow-hidden hover:border-primary transition-all"
+                  >
+                    <div className="relative overflow-hidden bg-background aspect-[3/4]">
+                      <img
+                        src={film.image}
+                        alt={film.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                    </div>
+                    <div className="p-4">
+                      <h4 className="font-display text-sm md:text-base uppercase tracking-wide text-foreground line-clamp-2">
+                        {film.title}
+                      </h4>
+                      <p className="text-primary text-[10px] uppercase tracking-widest mt-2">
+                        {film.category}
+                      </p>
+                      <p className="text-muted-foreground text-xs mt-1">
+                        {film.description}
+                      </p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+
+            {/* Comedy Drama Section */}
+            <div>
+              <h3 className="font-display text-2xl md:text-3xl uppercase tracking-wide text-foreground mb-8 flex items-center gap-3">
+                <span className="text-primary">▸</span> Comedy & Contemporary
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
+                {filmCategories.comedy.map((film, i) => (
+                  <motion.div
+                    key={film.title}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-30px" }}
+                    transition={{ duration: 0.4, delay: i * 0.06 }}
+                    className="group bg-background-elevated border border-border overflow-hidden hover:border-primary transition-all"
+                  >
+                    <div className="relative overflow-hidden bg-background aspect-[3/4]">
+                      <img
+                        src={film.image}
+                        alt={film.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                    </div>
+                    <div className="p-4">
+                      <h4 className="font-display text-sm md:text-base uppercase tracking-wide text-foreground line-clamp-2">
+                        {film.title}
+                      </h4>
+                      <p className="text-primary text-[10px] uppercase tracking-widest mt-2">
+                        {film.category}
+                      </p>
+                      <p className="text-muted-foreground text-xs mt-1">
+                        {film.description}
+                      </p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* TOTAL SUMMARY */}
       <section className="py-16 border-y border-border bg-background-elevated">
         <div className="container">
-          <div className="grid grid-cols-3 md:grid-cols-7 gap-y-8 divide-x divide-border text-center">
+          <div className="grid grid-cols-3 md:grid-cols-8 gap-y-8 divide-x divide-border text-center">
             {[
               ["22", "Audio Post"],
               ["8", "Video"],
@@ -428,6 +576,7 @@ const WorkShowcase = () => {
               ["10", "Short Films"],
               ["3", "Podcasts"],
               ["4", "Audio Books"],
+              ["9", "Films"],
             ].map(([n, l]) => (
               <div key={l} className="px-2">
                 <p className="font-display text-4xl md:text-5xl text-primary">{n}</p>
