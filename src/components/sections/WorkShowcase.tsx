@@ -119,7 +119,7 @@ const audioBooks: Array<[string, string]> = [
 ];
 
 const filmCategories = {
-  drama: [
+  productions: [
     {
       title: "विनायक पंडित (Vinayak Pandit)",
       description: "Planet Marathi Original",
@@ -144,8 +144,6 @@ const filmCategories = {
       category: "Drama",
       image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-6IjY3INj1mqiD2JL65Waiqf3AhZ10L.png",
     },
-  ],
-  comedy: [
     {
       title: "साप्पळा (Saappala)",
       description: "Thriller Drama",
@@ -176,6 +174,22 @@ const filmCategories = {
       category: "Comedy Drama",
       image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-e7vA3pznIjahCYWW6bMOG2HVEZPjSv.png",
     },
+  ],
+  featureFilms: ["Sarla Ek koti", "Gadad Andhar", "Basta", "Farzand", "Ani Dr Kashinath Ghanekar", "Rajkumar"],
+  shortFilms: ["The Drainage", "Weekend", "Dialima", "Vashat", "Na Jaane Kyon"],
+  corporateClients: [
+    "Symbiosis Skills and professional university, Pune",
+    "Finolex Pipes",
+    "Teradata India",
+    "AppDirect India",
+    "Maharashtra Tourism Department Board",
+    "Maharashtra Government",
+    "Nanded Waghala Municipal Corporation",
+    "Gurukul Public School",
+    "Snovel",
+    "Audible",
+    "Rhyfil",
+    "Zee Music Marathi",
   ],
 };
 
@@ -485,13 +499,13 @@ const WorkShowcase = () => {
           <div className="container">
             <SectionHeader num="08" title="Films & Productions" count="9 Productions" />
             
-            {/* Drama Section */}
+            {/* Recent Productions with Images */}
             <div className="mb-16">
               <h3 className="font-display text-2xl md:text-3xl uppercase tracking-wide text-foreground mb-8 flex items-center gap-3">
-                <span className="text-primary">▸</span> Drama & Period Films
+                <span className="text-primary">▸</span> Recent Productions
               </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                {filmCategories.drama.map((film, i) => (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {filmCategories.productions.map((film, i) => (
                   <motion.div
                     key={film.title}
                     initial={{ opacity: 0, y: 20 }}
@@ -523,41 +537,57 @@ const WorkShowcase = () => {
               </div>
             </div>
 
-            {/* Comedy Drama Section */}
+            {/* Feature Films */}
+            <div className="mb-16">
+              <h3 className="font-display text-2xl md:text-3xl uppercase tracking-wide text-foreground mb-8 flex items-center gap-3">
+                <span className="text-primary">▸</span> Feature Films
+              </h3>
+              <div className="bg-background-elevated border border-border p-8">
+                <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {filmCategories.featureFilms.map((film) => (
+                    <li key={film} className="flex items-start gap-3 text-foreground">
+                      <span className="text-primary mt-1">•</span>
+                      <span className="font-medium">{film}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            {/* Award-Winning Short Films */}
+            <div className="mb-16">
+              <h3 className="font-display text-2xl md:text-3xl uppercase tracking-wide text-foreground mb-8 flex items-center gap-3">
+                <span className="text-primary">▸</span> Award-Winning Short Films
+              </h3>
+              <div className="bg-background-elevated border border-border p-8">
+                <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {filmCategories.shortFilms.map((film) => (
+                    <li key={film} className="flex items-start gap-3 text-foreground">
+                      <span className="text-primary mt-1">•</span>
+                      <span className="font-medium">{film}</span>
+                    </li>
+                  ))}
+                </ul>
+                <p className="text-muted-foreground text-sm mt-6 italic">
+                  And many more short films for which we are associated for their production and post-production needs
+                </p>
+              </div>
+            </div>
+
+            {/* Corporate Films & Clients */}
             <div>
               <h3 className="font-display text-2xl md:text-3xl uppercase tracking-wide text-foreground mb-8 flex items-center gap-3">
-                <span className="text-primary">▸</span> Comedy & Contemporary
+                <span className="text-primary">▸</span> Corporate Films & Clients
               </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
-                {filmCategories.comedy.map((film, i) => (
-                  <motion.div
-                    key={film.title}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-30px" }}
-                    transition={{ duration: 0.4, delay: i * 0.06 }}
-                    className="group bg-background-elevated border border-border overflow-hidden hover:border-primary transition-all"
-                  >
-                    <div className="relative overflow-hidden bg-background aspect-[3/4]">
-                      <img
-                        src={film.image}
-                        alt={film.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                      />
-                    </div>
-                    <div className="p-4">
-                      <h4 className="font-display text-sm md:text-base uppercase tracking-wide text-foreground line-clamp-2">
-                        {film.title}
-                      </h4>
-                      <p className="text-primary text-[10px] uppercase tracking-widest mt-2">
-                        {film.category}
-                      </p>
-                      <p className="text-muted-foreground text-xs mt-1">
-                        {film.description}
-                      </p>
-                    </div>
-                  </motion.div>
-                ))}
+              <div className="bg-background-elevated border border-border p-8">
+                <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {filmCategories.corporateClients.map((client) => (
+                    <li key={client} className="flex items-start gap-3 text-foreground">
+                      <span className="text-primary mt-1">•</span>
+                      <span className="font-medium text-sm">{client}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
           </div>
