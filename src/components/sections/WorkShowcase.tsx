@@ -207,7 +207,33 @@ const filmCategories = {
       image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-jIcwBlK6h5akMMsYOR19w6lHxYsAoJ.png",
     },
   ],
-  shortFilms: ["The Drainage", "Weekend", "Dialima", "Vashat", "Na Jaane Kyon"],
+  shortFilms: [
+    {
+      title: "The Drainage",
+      description: "Award-Winning Short Film",
+      image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-bs53VNaDV6SP2w1t4JUOm9dJtsc51a.png",
+    },
+    {
+      title: "Weekend",
+      description: "Award-Winning Short Film",
+      image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-WbqrYJu2c7Bp8RNUdnO0vnLc4zQY5E.png",
+    },
+    {
+      title: "Dialima",
+      description: "Short Film",
+      image: null,
+    },
+    {
+      title: "Vashat",
+      description: "Short Film",
+      image: null,
+    },
+    {
+      title: "Na Jaane Kyon",
+      description: "Short Film",
+      image: null,
+    },
+  ],
   corporateClients: [
     "Symbiosis Skills and professional university, Pune",
     "Finolex Pipes",
@@ -394,34 +420,78 @@ const WorkShowcase = () => {
       {show("Short Films") && (
         <section className="py-20">
           <div className="container">
-            <SectionHeader num="04" title="Short Films" count="10 Short Films" />
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {shortFilms.map((f, i) => (
-                <motion.div
-                  key={f}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-30px" }}
-                  transition={{ duration: 0.4, delay: (i % 6) * 0.06 }}
-                  className="relative bg-background-elevated border border-border p-6 hover:border-primary transition-all overflow-hidden"
-                >
-                  <span className="absolute top-2 right-4 font-display text-6xl text-border/60 select-none">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <h3 className="font-display text-2xl uppercase tracking-wide text-foreground relative">
-                    {f}
-                  </h3>
-                  <p className="text-primary text-xs uppercase tracking-wider mt-2 relative">
-                    Short Film
-                  </p>
-                  {f === "Dilemma" && (
-                    <p className="flex items-center gap-2 text-primary text-[11px] mt-3 relative">
-                      <Award size={14} /> Official Selection — Horror Bowl Movie Awards 2021
-                    </p>
-                  )}
-                </motion.div>
-              ))}
+            <SectionHeader num="04" title="Award-Winning Short Films" count="5 Short Films" />
+            
+            {/* Films with Images */}
+            <div className="mb-12">
+              <h3 className="font-display text-xl md:text-2xl uppercase tracking-wide text-foreground mb-6 flex items-center gap-3">
+                <span className="text-primary">▸</span> Featured Films
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
+                {filmCategories.shortFilms
+                  .filter((f) => f.image)
+                  .map((f, i) => (
+                    <motion.div
+                      key={f.title}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true, margin: "-30px" }}
+                      transition={{ duration: 0.4, delay: i * 0.06 }}
+                      className="group bg-background-elevated border border-border overflow-hidden hover:border-primary transition-all"
+                    >
+                      <div className="relative overflow-hidden bg-background aspect-[3/4]">
+                        <img
+                          src={f.image}
+                          alt={f.title}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
+                      </div>
+                      <div className="p-4">
+                        <h4 className="font-display text-sm md:text-base uppercase tracking-wide text-foreground line-clamp-2">
+                          {f.title}
+                        </h4>
+                        <p className="text-primary text-[10px] uppercase tracking-widest mt-2">
+                          {f.description}
+                        </p>
+                      </div>
+                    </motion.div>
+                  ))}
+              </div>
             </div>
+
+            {/* Other Short Films List */}
+            <div>
+              <h3 className="font-display text-xl md:text-2xl uppercase tracking-wide text-foreground mb-6 flex items-center gap-3">
+                <span className="text-primary">▸</span> More Films
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {filmCategories.shortFilms
+                  .filter((f) => !f.image)
+                  .map((f, i) => (
+                    <motion.div
+                      key={f.title}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true, margin: "-30px" }}
+                      transition={{ duration: 0.4, delay: i * 0.06 }}
+                      className="relative bg-background-elevated border border-border p-6 hover:border-primary transition-all overflow-hidden"
+                    >
+                      <span className="absolute top-2 right-4 font-display text-6xl text-border/60 select-none">
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                      <h3 className="font-display text-2xl uppercase tracking-wide text-foreground relative">
+                        {f.title}
+                      </h3>
+                      <p className="text-primary text-xs uppercase tracking-wider mt-2 relative">
+                        {f.description}
+                      </p>
+                    </motion.div>
+                  ))}
+              </div>
+            </div>
+            <p className="text-center text-muted-foreground text-sm mt-8 italic">
+              And many more short films for which we are associated for their production and post-production needs
+            </p>
           </div>
         </section>
       )}
