@@ -175,7 +175,38 @@ const filmCategories = {
       image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-e7vA3pznIjahCYWW6bMOG2HVEZPjSv.png",
     },
   ],
-  featureFilms: ["Sarla Ek koti", "Gadad Andhar", "Basta", "Farzand", "Ani Dr Kashinath Ghanekar", "Rajkumar"],
+  featureFilms: [
+    {
+      title: "Jawani Zindagiwa",
+      description: "Romantic Drama",
+      image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-UfwPf0hsRwaOQW53N3Xyr49p8EmSzi.png",
+    },
+    {
+      title: "Sarla Ek Koti",
+      description: "Period Drama",
+      image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-Ip50csJQbkQXgcXXAJolfRUqAdg9Oe.png",
+    },
+    {
+      title: "Gadad Andhar",
+      description: "Historical Drama",
+      image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-NmNDbN3GkSI0m4i6A0SEDjaj0MIzQ5.png",
+    },
+    {
+      title: "Ani Dr. Kashinath Ghanekar",
+      description: "Biographical Drama",
+      image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-PzDWe44oNe2a04km59Vkdu0AvnSCTn.png",
+    },
+    {
+      title: "Basta",
+      description: "Drama",
+      image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-NfBN5O7aqfgh1lxYu6saXnqTYCQoBP.png",
+    },
+    {
+      title: "Farzand",
+      description: "Family Drama",
+      image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-jIcwBlK6h5akMMsYOR19w6lHxYsAoJ.png",
+    },
+  ],
   shortFilms: ["The Drainage", "Weekend", "Dialima", "Vashat", "Na Jaane Kyon"],
   corporateClients: [
     "Symbiosis Skills and professional university, Pune",
@@ -542,15 +573,36 @@ const WorkShowcase = () => {
               <h3 className="font-display text-2xl md:text-3xl uppercase tracking-wide text-foreground mb-8 flex items-center gap-3">
                 <span className="text-primary">▸</span> Feature Films
               </h3>
-              <div className="bg-background-elevated border border-border p-8">
-                <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {filmCategories.featureFilms.map((film) => (
-                    <li key={film} className="flex items-start gap-3 text-foreground">
-                      <span className="text-primary mt-1">•</span>
-                      <span className="font-medium">{film}</span>
-                    </li>
-                  ))}
-                </ul>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {filmCategories.featureFilms.map((film, i) => (
+                  <motion.div
+                    key={film.title}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-30px" }}
+                    transition={{ duration: 0.4, delay: i * 0.06 }}
+                    className="group bg-background-elevated border border-border overflow-hidden hover:border-primary transition-all"
+                  >
+                    <div className="relative overflow-hidden bg-background aspect-[3/4]">
+                      <img
+                        src={film.image}
+                        alt={film.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                    </div>
+                    <div className="p-4">
+                      <h4 className="font-display text-sm md:text-base uppercase tracking-wide text-foreground line-clamp-2">
+                        {film.title}
+                      </h4>
+                      <p className="text-primary text-[10px] uppercase tracking-widest mt-2">
+                        Feature Film
+                      </p>
+                      <p className="text-muted-foreground text-xs mt-1">
+                        {film.description}
+                      </p>
+                    </div>
+                  </motion.div>
+                ))}
               </div>
             </div>
 
